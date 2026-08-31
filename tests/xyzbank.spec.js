@@ -26,19 +26,14 @@ test('Verify Financial Transaction', async({ page }) => {
 
     // Open Customer Tab
     await page.getByRole('button', { name: 'Open Account' }).click();
-
-    // Select customer, set currency.
+    
+    // Select customer, set currency and process the data.
     const customerDropdown = page.locator('#userSelect');
-    await customerDropdown.selectOption('Niranjan Das');
+    await customerDropdown.selectOption({label: 'Niranjan Das'});
     const currencyDropdown = page.locator('#currency');
     await currencyDropdown.selectOption('Dollar');
-
-    // Process the data. The following alert handling code is not necessary here as we have already defined previously.
-    // page.on('dialog', async dialog => {
-    //     console.log(dialog.message());
-    //     await dialog.accept();
-    // });
     await page.getByRole('button', { name: 'Process' }).click();
+
     await page.waitForTimeout(5000);
     // Open Customer Tab and verify the generated account exist.
     await page.getByRole('button', { name: 'Customers' }).click();
