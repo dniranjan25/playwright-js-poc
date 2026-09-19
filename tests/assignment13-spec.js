@@ -152,7 +152,7 @@ console.log(options)
       const rows = page.locator('tbody tr');
       const count = await rows.count();
 
-      const ages: number[] = [];
+      const ages = [];
 
       for (let i = 0; i < count; i++) {
         const ageText = await rows
